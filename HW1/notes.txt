@@ -1,0 +1,98 @@
+LAB 1.5
+1)
+
+[estee@lnxsrv09 ~]$ type mv
+mv is /usr/local/cs/bin/mv
+[estee@lnxsrv09 ~]$ type sh
+sh is /usr/bin/sh
+
+2)
+
+[estee@lnxsrv09 /usr/bin]$ ls /usr/bin | grep "^.r$"
+ar - create, modify, and extract from archives
+pr - convert text files for printing
+tr - translate or delete characters
+
+3)
+
+[estee@lnxsrv09 /usr/bin]$ file /usr/bin/emacs
+/usr/bin/emacs: symbolic link to `/etc/alternatives/emacs'
+
+4)
+
+/usr/bin/gccÂ - gcc version 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC) 
+plain gcc - gcc version 10.2.0 (GCC) 
+
+They are different programs because plain gcc is located in /usr/local/cs/bin/gcc
+
+5)
+
+
+the user who owns the files access will be changed: a set user or group ID on execution, and execute (or search for directories) are selected file mode bits to be added to the existing file mode bits of each file
+
+other users not in the file's group access will be changed: write is the selected file mode bits removed from the existing file mode bits of each file
+
+6)
+
+[estee@lnxsrv09 /usr/local/cs]$ find -type d -mtime -28
+./bin
+
+7)
+
+[estee@lnxsrv10 /usr/bin]$ find . -type l | wc -l
+292
+
+8)
+
+[estee@lnxsrv09 /usr/lib64]$ ls -lt -a
+-rwxr-xr-x.  1 root root       19408 Dec 28  2013 librom1394.so.0.3.0
+
+librom1394.so.0.3.0
+
+9)
+
+using man locale
+ex:
+the  environment  variables  LOCPATH and LANG are stored in the shell profile file so that the custom locale will be used in the subsequent user sessions
+
+ /usr/lib/locale/locale-archive    -    Usual default locale archive location.
+
+/usr/share/i18n/locales    -    Usual default path for locale definition files.
+
+
+10)
+
+using C-h a : downcase:
+
+downcase-dwim                 M-x ... RET
+   Downcase words in the region, if active; if not, downcase word at
+   point.
+downcase-region               C-x C-l
+   Convert the region to lower case.  In programs, wants two
+   arguments.
+downcase-word                 M-l
+   Convert to lower case from point to end of word, moving over.
+
+11)
+
+Regexp I-search backward - C-M-r
+Regexp I-search  - C-M-S
+C-M-t   -  Transpose two balanced expressions (`transpose-sexps').
+C-M-u   -  Move up in parenthesis structure (`backward-up-list').
+C-M-v -  in the minibuffer scrolls the help text from commands that display help text of any sort in another window.
+
+12)
+
+The "minibuffer" is a special window where you can input arguments to commands, such as the name of a
+file to be edited.  You can always get out of the minibuffer by typing`C-g'.
+
+
+13)
+
+The yank function pulls text to the buffer for later use. It is invoked with `C-y'
+
+14)
+
+dired is a Directory and file manager.
+ls -l uses a long listing format to list everything in the directory
+

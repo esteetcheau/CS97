@@ -1,0 +1,20 @@
+The following command was used to determine who wrote the line that resulted
+in the copyright infringement affair:
+
+[estee@lnxsrv09 ~/tz]$ git log -S "Even newspaper reports present contradictory information"
+
+The output was as follows:
+
+commit c12b432741eed9a422fbf99fa27af6e7a941d88b
+Author: Arthur David Olson <ado@elsie>
+Date:   Thu Dec 21 11:43:42 1995 -0500
+
+    Eggert changes
+    
+    SCCS-file: northamerica
+    SCCS-SID: 7.20
+
+
+
+We then know that Arthur David Olsen was most likely the 
+one responsible for the writing of this sentence as he is the author.

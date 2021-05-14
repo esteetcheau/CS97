@@ -1,0 +1,36 @@
+1) First we clone with command:
+git clone https://github.com/git/git.git
+
+2) Use git log to compare two versions:
+git log v2.30.0..v2.30.1 --oneline 
+
+3) Search for line containing "newlines":
+
+a02ea57717 git_connect_git(): forbid newlines in host and path
+
+4) Command was used to output to file:
+git log v2.30.0..v2.30.1 > file
+
+5) Search through file for "a02ea57717"
+
+commit a02ea577174ab8ed18f847cf1693f213e0b9c473
+Author: Jeff King <peff@peff.net>
+Date:   Thu Jan 7 04:43:58 2021 -0500
+
+    git_connect_git(): forbid newlines in host and path
+    
+    
+6) Use command to find differences between versions:
+git diff v2.30.0 v2.30.1  
+
+
+7) Search through for "newline": 
+
++	if (strchr(target_host, '\n') || strchr(path, '\n'))
++		die(_("newline is forbidden in git:// hosts and repo paths"));
+ 
+ 
++test_expect_success 'client refuses to ask for repo with newline' '
++	test_must_fail git clone "$GIT_DAEMON_URL/repo$LF.git" dst 2>stderr &&
++	test_i18ngrep newline.is.forbidden stderr
++'

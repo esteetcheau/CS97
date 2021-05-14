@@ -1,0 +1,51 @@
+2.1)
+
+(expt 2 63)
+9223372036854775808
+(expt 2 (expt 3 4))
+2417851639229258349412352
+
+(if (< (expt 2 (expt 3 4)) (expt 2 63))
+    t
+  nil)
+nil
+
+
+C-h k           describe-key
+M-SPC           just-one-space
+
+C-h k runs the command describe-key (found in global-map), which is an
+interactive compiled Lisp function in `help.el'.
+
+M-SPC runs the command just-one-space (found in global-map), which is
+an interactive compiled Lisp function in `simple.el'.
+
+
+
+Since C-h k runs the command describe-key, hitting “C-h k” followed by some key such as 
+“C-h k” or “M-SPC” will also bring you to the definition of what the key you typed means.
+This relates to C-h b because it shows the list of keybindings from which you can select a key and see what it does
+
+
+(if (= (char-before (point-max)) 10)
+          (message "Line %d of %d" (1+ (count-lines 1 (point))) (-(line-number-\
+at-pos (point-max)) 1))
+        (message "Line %d of %d" (1+ (count-lines 1 (point))) (line-number-at-p\
+os (point-max)))))))
+
+
+HW)
+
+since /dev/null is an empty file and the randline.py script reads from the file and 
+places the contents into an index, there is an error saying the list index is out of range.
+This is because randline.py expects the file to have contents, but the input file is empty.
+
+
+Python3 gave the error message of the randline.py file not existing
+
+
+When using python2 was used for shuf.py, the following error exists:
+python2: can't open file 'shuf.py': [Errno 2] No such file or directory
+
+
+
