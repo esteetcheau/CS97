@@ -1,0 +1,98 @@
+1. used: wget https://web.cs.ucla.edu/classes/winter21/cs97-1/assign/randall-assignment.txz
+to download tarball on seasnet
+
+2. unzip using tar -xvf randall-assignment.txz
+
+3. added check target with test_script.sh file to Makefile to ensure program runs
+
+4. used test line: a=$(./randall 5 | wc -c); if [ $a -eq 5 ]; 
+then echo "success"; else echo "fail"; fi;
+as starter test.
+
+5. moved part of randall.c which checks for options to options.c and created
+a function named optionProcess with void return value. Added declaration in options.h
+and imported libraries needed. I also imported the unistd.h library to options.c in order
+to use the getopt function.
+
+6. moved the writebytes function to output.c with its declaration in output.h
+and imported libraries needed.
+
+7. moved all the hardware functions from randall.c to rand64-hw.c and cpuid structure 
+to rand64-hw.h with appropriate libraries needed.
+
+8. moved all the software functions and the urandstream FILE pointer from randall.c to 
+rand64-hw.c and imported libraries with declaration in rand64-sw.h.
+
+9. changed the Makefile by changing randall target’s dependency to '*.c' so that it
+checks for all .c files when compiling and '$@.c' to '*.c' so we can use "make" and "make check"
+to ensure proper running
+
+10. I created the opts structure which has attributes enum Input, enum Output, char *r_src,
+long long nbytes, bool valid, and int block. 
+11. the example of getopt was used to modify the arguments and choose the appropriate options.
+
+12. various error messages were implemented to indicate if no cases applied.
+
+13. I created a function within rand64-sw.c which sets the path that would be called 
+according to if a condition was used (determined in randall.c). The default was
+/dev/random 
+
+14. the hardware_rand48 function was implemented in rand64-hw.c which handles the 
+appropriate case. A struct drand48_data buffer was used and passed as an argument to
+srand48_r. Two variables a and b hold the values after mrand48_r operates.
+
+15. an unsigned long long variable x holds the values of the final numbers generated.
+
+16. In randall.c a check determines whether to invoke hardware_rand64 of hardware_rand48
+functions by checking what opts.input is equal to. What opts.input equalled was used
+as a check to select various options.
+
+17. a buffer was created with malloc(options.block_size * 1024) to ensure the 
+appropriate byte allocation. A loop was used to fill the buffer until various
+scenarios occurred. 
+
+18. I ensured each file had appropriate headers and modules imported and cleaned up
+my code
+
+19. Finally, I added additional checks to test_script.sh
+
+
+
+Timing Checks
+
+results :
+[estee@lnxsrv09 ~/randall]$ time dd if=/dev/urandom ibs=8192 obs=8192 count=16384 >/dev/null
+16384+0 records in
+16384+0 records out
+134217728 bytes (134 MB, 128 MiB) copied, 0.960292 s, 140 MB/s
+
+real	0m0.965s
+user	0m0.026s
+sys	0m0.936s
+
+
+[estee@lnxsrv09 ~/randall]$ time ./randall 133562368 >/dev/null
+
+real	0m3.160s
+user	0m3.147s
+sys	0m0.013s
+
+[estee@lnxsrv09 ~/randall]$ time ./randall 133562368 | cat >/dev/null
+
+real	0m3.217s
+user	0m3.179s
+sys	0m0.215s
+
+[estee@lnxsrv09 ~/randall]$ time ./randall 133562368 >rand.data
+
+real	0m6.048s
+user	0m3.161s
+sys	0m0.176s
+
+[estee@lnxsrv09 ~/randall]$ time ./randall 133562368 -i /dev/urandom >/dev/null
+
+real	0m2.614s
+user	0m1.667s
+sys	0m0.944s
+
+
